@@ -1,3 +1,4 @@
+import os
 import sys
 from xml.etree import ElementTree as eT
 import requests
@@ -6,7 +7,7 @@ import requests
 def download_xml(
         url='http://syndication.enterprise.websiteidx.com/feeds'
             '/BoojCodeTest.xml',
-        retries=2  # TODO need to make sure that retries works right
+        retries=2  # TODO check retries
 ):
     """Function to download the XML file from a feed.
 
@@ -70,16 +71,10 @@ def store_xml(path='./raw_data'):
     """Once it is verified that the directory exists store the
     downloaded file to the disk for later processing
     """
-    return path
+    pass
 
 
-def path_exists(path):
-    """Check if the path exists and return a boolean
+def path_is_valid(path):
+    """Check if the path exists and is a directory
     """
-    return path
-
-
-def make_path(path):
-    """If the path does not exist than it needs to be made
-    """
-    return path
+    return os.path.exists(path) and os.path.isdir(path)
