@@ -1,55 +1,8 @@
+import os
 import sys
+import time
 from xml.etree import ElementTree as eT
 import requests
-
-
-def download_xml(
-        url='http://syndication.enterprise.websiteidx.com/feeds'
-            '/BoojCodeTest.xml',
-        retries=2  # TODO need to make sure that retries works right
-):
-    """Function to download the XML file from a feed.
-
-
-    Both arguments are optional, default URL is the URl that was
-    given with the assignment and default retries is 2 if the
-    download fails.
-
-    Function will return a tuple with the response status code and
-    the payload if it is a valid XML, else None.
-    :type url: str
-    :type retries: int
-    """
-    try:
-        response = requests.get(url)
-
-        # If the request does not succeed attempt to re-download
-        if response.status_code != 200 and retries:
-            download_xml(url, retries - 1)
-
-        xml = response.content if well_formed_xml(response.content) \
-            else \
-            None
-
-    except requests.ConnectionError as ce:
-        print "Connection Error ({0}): {1}".format(ce.errno,
-                                                   ce.strerror)
-    except requests.HTTPError as he:
-        print "HTTP Error({0}): {1}".format(he.errno, he.strerror)
-    except requests.Timeout as te:
-        print "Timeout Error({0}): {1}".format(te.errno, te.strerror)
-    except requests.TooManyRedirects as tmr:
-        print "Too Many redirects Error({0}): {1}".format(tmr.errno,
-                                                          tmr.strerror)
-    except requests.RequestException as re:
-
-        print "General Request Error({0}): {1}".format(re.errno,
-                                                       re.strerror)
-    else:
-        if response.status_code:
-            return response.status_code, xml
-        else:
-            sys.exit(1)
 
 
 def well_formed_xml(response_text):
@@ -57,29 +10,97 @@ def well_formed_xml(response_text):
 
     If the payload is able to parsed into an ElementTree than that
     is enough to verify that the file is valid XML
+    :param response_text: content from the response, expected to be
+    an XML
+    :return: true if the content can be parsed at an XML
     """
     try:
-        xml_tree = eT.fromstring(response_text)
+        tree = eT.fromstring(response_text)
     except eT.ParseError as pe:
         print "Downloaded XML is not well formed: {}".format(pe.msg)
     else:
-        return True if xml_tree.tag else False
+        return tree.tag
 
 
-def store_xml(path='./raw_data'):
-    """Once it is verified that the directory exists store the
-    downloaded file to the disk for later processing
+def path_is_valid(directory):
+    """Check if the path exists and is a directory
+    :param directory: the expected path passed in will be relative to
+    the project
+    :return: true if path exists and is a directory
     """
-    return path
+    path = '{cwd}{dir}'.format(cwd=os.getcwd(), dir=directory)
+    if not os.path.exists(path) and not os.path.isdir(path):
+        os.makedirs(path)
+    return os.path.exists(path) and os.path.isdir(path)
 
 
-def path_exists(path):
-    """Check if the path exists and return a boolean
+class GetXML:
+    """GetXML class will be used to download and store XMLs based on
+    the URLs passed in when the object is created.  By default there
+    is only one URL to download an XML from.
     """
-    return path
 
+    def __init__(self, url='http://syndication.enterprise.websiteidx'
+                           '.com/feeds/BoojCodeTest.xml'):
+        self.url = url
+        self.response = requests.Response()
+        self.data_dir = '/data/'
 
-def make_path(path):
-    """If the path does not exist than it needs to be made
-    """
-    return path
+    def download_xml(self, retries=2):
+        """Function to download the XML file from a feed.
+        :param retries: How many times to retry downloading the file
+        :return: the status code and content of the request
+
+        """
+        try:
+            self.response = requests.get(self.url)
+
+            # Attempt the download until successful
+            if self.response.status_code != 200 and retries:
+                self.download_xml(retries - 1)
+
+        except requests.ConnectionError as ce:
+            print "Connection Error ({0}): {1}".format(ce.errno,
+                                                       ce.strerror)
+        except requests.HTTPError as he:
+            print "HTTP Error({0}): {1}".format(he.errno, he.strerror)
+        except requests.Timeout as te:
+            print "Timeout Error({0}): {1}".format(te.errno,
+                                                   te.strerror)
+        except requests.TooManyRedirects as tmr:
+            print "Too Many redirects Error({0}): {1}".format(
+                tmr.errno, tmr.strerror)
+        except requests.RequestException as re:
+
+            print "General Request Error({0}): {1}".format(re.errno,
+                                                           re.strerror)
+        else:
+            if self.response.status_code:
+                xml = self.response.content if well_formed_xml(
+                    self.response.content) \
+                    else None
+
+                file_name = self.url.split('/')[-1]
+                self.store_xml(xml, file_name)
+                return self.response.status_code, xml
+            else:
+                # TODO Capture stacktrace
+                sys.exit(1)
+
+    def store_xml(self, xml, filename):
+        """Once determined that the path to store the file is valid
+        and the XML is valid than insert a millisecond-from-epoch
+        timestamp to uniquely identify each downloaded file
+        """
+        if path_is_valid(self.data_dir) and xml:
+            millis = str(int(round(time.time() * 1000)))
+            stored_filename = '{timestamp}_{name}'.format(
+                timestamp=millis,
+                name=filename)
+            file_path = '{cwd}{dir}{name}'.format(cwd=os.getcwd(),
+                                                  dir=self.data_dir,
+                                                  name=stored_filename)
+            with open(file_path, 'wt') as f:
+                f.write(xml)
+        else:
+            print 'XML downloaded was empty: {fn}'.format(fn=filename)
