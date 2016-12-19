@@ -11,8 +11,13 @@ def clear_old_test_data():
     folder = '{}{}'.format(os.getcwd(), '/data_TEST/')
     for the_file in os.listdir(folder):
         file_path = os.path.join(folder, the_file)
+        leave_files = ('1_transform_test.xml',
+                       '10_transform_test.xml',
+                       '20_transform_test.xml',
+                       '16725275196_transform_test.xml',)
         try:
-            if os.path.isfile(file_path):
+            if os.path.isfile(file_path) and the_file not in \
+                    leave_files:
                 os.unlink(file_path)
         except Exception as e:
             print e

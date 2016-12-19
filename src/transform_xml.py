@@ -1,4 +1,18 @@
 import os
+import traceback as tb
+
+
+def update_criteria_file(criteria_file, data_files):
+    """Sort a list of the timestamps from the data files and write
+    the latest one to the criteria file
+    """
+    timestamps = []
+    for f in data_files:
+        timestamps.append(int(f.split('_')[0]))
+
+    timestamps = sorted(timestamps, key=int)
+    with open(criteria_file, 'wt') as cf:
+        cf.write(str(timestamps[-1]))
 
 
 class TransformXML:
@@ -16,12 +30,25 @@ class TransformXML:
     file date to the earliest date of files being queried.
     """
 
-    def __init__(self, input_format='xml',
-                 output_format='csv',
-                 criteria='/config/transform.criteria'):
+    def __init__(
+            self,
+            input_format='xml',
+            output_format='csv',
+            criteria='/config/transform.criteria',
+            data_dir='/data/',
+            required_fields=('MlsId', 'MlsName', 'DateListed',
+                             'StreetAddress', 'Price',
+                             'Bedrooms', 'Bathrooms',
+                             'Appliances', 'Rooms', 'Description'),
+            requirements={'DateListed': '2016',
+                          'Description': 'and'}
+    ):
         self.input_format = input_format
         self.output_format = output_format
         self.criteria = criteria
+        self.data_dir = data_dir
+        self.required_fields = required_fields
+        self.requirements = requirements
 
     def get_new_input(self):
         """Read the criteria file for the last time the data has been
@@ -32,12 +59,36 @@ class TransformXML:
         """
         criteria_file = '{cwd}{file}'.format(cwd=os.getcwd(),
                                              file=self.criteria)
-        with open(criteria_file) as cf:
-            try:
+        data_files = \
+            os.listdir('{cwd}{path}'.format(cwd=os.getcwd(),
+                                            path=self.data_dir))
+
+        new_files = []
+        try:
+            with open(criteria_file, 'rt') as cf:
                 cf_date = cf.readline()[0]
-            except IOError as ioe:
-                print 'Not able to read the file: {}\n\tIOE: {}'.format(
-                    criteria_file, ioe.message)
-            except IndexError:
-                # TODO criteria file is empty so process all files
-                pass
+                for f in data_files:
+                    ts = f.split('_')[0]
+                    if ts > cf_date:
+                        new_files.append(f)
+
+        except IOError:
+            # Criteria file is not present, process all files in data
+            # directory
+            for f in data_files:
+                new_files.append(f)
+        except IndexError:
+            print 'IndexError:\n\t{}'.format(tb.print_tb())
+        else:
+            update_criteria_file(criteria_file, data_files)
+
+        return new_files
+
+    def reduce_elements(self):
+        """Method that will reduce the elements that need to be
+        transformed based on the requirements passed in.
+
+        Requirements are in the form of a dictionary where the key
+        will be the XML element to be examined and
+        """
+        pass
