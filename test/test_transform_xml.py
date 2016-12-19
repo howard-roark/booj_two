@@ -2,6 +2,7 @@ import os
 import unittest
 from src.transform_xml import TransformXML
 from src.transform_xml import update_criteria_file
+from test_get_xml import clear_old_test_data
 
 
 def clear_test_criteria():
@@ -26,6 +27,7 @@ class NonBlankFileTransform(unittest.TestCase):
     """
 
     def setUp(self):
+        clear_old_test_data()
         # Writing a timestamp to a new test criteria file
         test_cf = '{cwd}{file}'.format(cwd=os.getcwd(),
                                        file='/config_TEST'
@@ -52,8 +54,7 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
 
     def test_criteria_file_updated(self):
         with open('{}{}'.format(os.getcwd(), self.t_xml.criteria),
-                  'rt') as \
-                cf:
+                  'rt') as cf:
             criteria_file = '{}{}'.format(os.getcwd(),
                                           self.t_xml.criteria)
             data_files = os.listdir('{}{}'.format(os.getcwd(),
@@ -65,6 +66,9 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
             GetXML test suite.
             '''
             self.assertTrue(cf.readline() >= 20)
+
+    def test_write_csv(self):
+        pass
 
 
 class BlankTransformFile(unittest.TestCase):

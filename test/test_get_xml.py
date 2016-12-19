@@ -13,8 +13,7 @@ def clear_old_test_data():
         file_path = os.path.join(folder, the_file)
         leave_files = ('1_transform_test.xml',
                        '10_transform_test.xml',
-                       '20_transform_test.xml',
-                       '16725275196_transform_test.xml',)
+                       '20_transform_test.xml',)
         try:
             if os.path.isfile(file_path) and the_file not in \
                     leave_files:
@@ -78,7 +77,3 @@ class TestGetXML(unittest.TestCase):
         response code is returned and the text value is None
         """
         self.assertRaises(Exception, self.badGX.download_xml())
-
-
-suite = unittest.TestLoader().loadTestsFromTestCase(TestGetXML)
-unittest.TextTestRunner(verbosity=2).run(suite)

@@ -1,5 +1,29 @@
 import os
+import csv
+import xml.etree.ElementTree as eT
 import traceback as tb
+
+# Required fields
+CONST_LISTING = 'Listing'
+CONST_LISTING_DETAILS = 'ListingDetails'
+CONST_LOCATION = 'Location'
+CONST_BASIC_DETAILS = 'BasicDetails'
+CONST_RICH_DETAILS = 'RichDetails'
+# Table headers
+CONST_DATE_LISTED = 'DateListed'
+CONST_MLS_ID = 'MlsId'
+CONST_MLS_NAME = 'MlsName'
+CONST_PRICE = 'Price'
+CONST_BEDROOMS = 'Bedrooms'
+CONST_BATHROOMS = 'Bathrooms'
+CONST_ADDRESS = 'StreetAddress'
+CONST_ROOMS = 'Rooms'
+CONST_APPLIANCES = 'Appliances'
+CONST_DESC = 'Description'
+CONST_TABLE_HEADERS = (CONST_DATE_LISTED, CONST_MLS_ID,
+                       CONST_MLS_NAME, CONST_PRICE, CONST_BEDROOMS,
+                       CONST_BATHROOMS, CONST_ADDRESS, CONST_ROOMS,
+                       CONST_APPLIANCES, CONST_DESC)
 
 
 def update_criteria_file(criteria_file, data_files):
@@ -15,7 +39,7 @@ def update_criteria_file(criteria_file, data_files):
         cf.write(str(timestamps[-1]))
 
 
-class TransformXML:
+class TransformXML(object):
     """This class will be responsible for finding new data to be
     transformed, parsing out the required fields and transforming
     them to the required format.
@@ -32,23 +56,12 @@ class TransformXML:
 
     def __init__(
             self,
-            input_format='xml',
-            output_format='csv',
             criteria='/config/transform.criteria',
             data_dir='/data/',
-            required_fields=('MlsId', 'MlsName', 'DateListed',
-                             'StreetAddress', 'Price',
-                             'Bedrooms', 'Bathrooms',
-                             'Appliances', 'Rooms', 'Description'),
-            requirements={'DateListed': '2016',
-                          'Description': 'and'}
     ):
-        self.input_format = input_format
-        self.output_format = output_format
         self.criteria = criteria
         self.data_dir = data_dir
-        self.required_fields = required_fields
-        self.requirements = requirements
+        self.new_files = []
 
     def get_new_input(self):
         """Read the criteria file for the last time the data has been
@@ -63,32 +76,55 @@ class TransformXML:
             os.listdir('{cwd}{path}'.format(cwd=os.getcwd(),
                                             path=self.data_dir))
 
-        new_files = []
         try:
             with open(criteria_file, 'rt') as cf:
                 cf_date = cf.readline()[0]
                 for f in data_files:
                     ts = f.split('_')[0]
                     if ts > cf_date:
-                        new_files.append(f)
+                        self.new_files.append(f)
 
         except IOError:
             # Criteria file is not present, process all files in data
             # directory
             for f in data_files:
-                new_files.append(f)
+                self.new_files.append(f)
         except IndexError:
             print 'IndexError:\n\t{}'.format(tb.print_tb())
         else:
             update_criteria_file(criteria_file, data_files)
 
-        return new_files
+        return self.new_files
 
-    def reduce_elements(self):
+    def write_csv(self, filename):
         """Method that will reduce the elements that need to be
         transformed based on the requirements passed in.
-
-        Requirements are in the form of a dictionary where the key
-        will be the XML element to be examined and
         """
-        pass
+        file_path = '{cwd}{path}{fname}'.format(cwd=os.getcwd(),
+                                                path='/data/',
+                                                fname=filename)
+        csv_filename = '{}{}'.format(file_path.split('.')[0], '.csv')
+        csv_writer = csv.writer(csv_filename)
+
+        tree = eT.parse(file_path)
+        root = tree.getroot()
+
+        table_header = True
+        for member in root.findall(CONST_LISTING):
+            date_listed = member.find(CONST_DATE_LISTED).text
+            desc = member.find(CONST_DESC).text
+            if '2016' in date_listed and 'and' in desc:
+                listing = []
+                if table_header:
+                    table_header = False
+                    csv_writer.writerow(CONST_TABLE_HEADERS)
+
+                for header in CONST_TABLE_HEADERS:
+                    listing.append(member.find(header).text)
+
+                csv_writer.writerow(listing)
+
+if __name__ == 'main':
+    t_xml = TransformXML
+    for i in t_xml.get_new_input():
+        t_xml.write_csv(i)
