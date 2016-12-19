@@ -15,7 +15,7 @@ def clear_old_test_data():
             if os.path.isfile(file_path):
                 os.unlink(file_path)
         except Exception as e:
-            print(e)
+            print e
 
 
 class TestGetXML(unittest.TestCase):

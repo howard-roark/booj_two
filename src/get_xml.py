@@ -38,6 +38,15 @@ class GetXML:
     """GetXML class will be used to download and store XMLs based on
     the URLs passed in when the object is created.  By default there
     is only one URL to download an XML from.
+
+    Before the XML is written to a file on disk it is verified to be
+    syntactically correct XML.  If it is not that it will not be
+    written to disk and an error message will be printed to the
+    console (until more formal logging is setup)
+
+    When storing the files being downloaded there will be a check to
+    make sure that the directories are present and valid, if they are
+    not they will be created.
     """
 
     def __init__(self, url='http://syndication.enterprise.websiteidx'
