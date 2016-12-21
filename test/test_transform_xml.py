@@ -1,7 +1,9 @@
 import os
 import unittest
+import xml.etree.ElementTree as eT
 from src.transform_xml import TransformXML
 from src.transform_xml import update_criteria_file
+from src.transform_xml import requirements_met
 from test_get_xml import clear_old_test_data
 
 
@@ -67,6 +69,9 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
             '''
             self.assertTrue(cf.readline() >= 20)
 
+    def test_reduce_xml(self):
+        pass
+
     def test_write_csv(self):
         pass
 
@@ -100,3 +105,16 @@ class TestTransformXMLNoDate(BlankTransformFile):
         obtained_files = self.t_xml.get_new_input()
         for ef in expected_files:
             self.assertTrue(ef in obtained_files)
+
+    def test_requirements_met(self):
+        good_xml = '<Description>please and thank you</Description>'
+        good_member = eT.fromstring(good_xml)
+        self.assertTrue(requirements_met(good_member))
+
+        non_matching_val_xml = '<Description>or</Description>'
+        non_matching_val_member = eT.fromstring(non_matching_val_xml)
+        self.assertFalse(requirements_met(non_matching_val_member))
+
+        bad_tag_xml = '<NotATag>gonna be ignored</NotATag>'
+        bad_tag_member = eT.fromstring(bad_tag_xml)
+        self.assertFalse(requirements_met(bad_tag_member))

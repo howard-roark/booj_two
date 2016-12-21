@@ -9,21 +9,44 @@ CONST_LISTING_DETAILS = 'ListingDetails'
 CONST_LOCATION = 'Location'
 CONST_BASIC_DETAILS = 'BasicDetails'
 CONST_RICH_DETAILS = 'RichDetails'
+# Relevant children
+CONST_RELEVANT_CHILDREN = (CONST_LISTING_DETAILS, CONST_RICH_DETAILS,
+                           CONST_LOCATION, CONST_BASIC_DETAILS)
+# Indices for table headers
+CONST_DATE_INDEX = 0
+CONST_ID_INDEX = 1
+CONST_NAME_INDEX = 2
+CONST_PRICE_INDEX = 3
+CONST_BEDR_INDEX = 4
+CONST_BATHR_INDEX = 5
+CONST_ADDR_INDEX = 6
+CONST_ROOMS_INDEX = 7
+CONST_APPS_INDEX = 8
+CONST_DESC_INDEX = 9
+
 # Table headers
-CONST_DATE_LISTED = 'DateListed'
-CONST_MLS_ID = 'MlsId'
-CONST_MLS_NAME = 'MlsName'
-CONST_PRICE = 'Price'
-CONST_BEDROOMS = 'Bedrooms'
-CONST_BATHROOMS = 'Bathrooms'
-CONST_ADDRESS = 'StreetAddress'
-CONST_ROOMS = 'Rooms'
-CONST_APPLIANCES = 'Appliances'
-CONST_DESC = 'Description'
-CONST_TABLE_HEADERS = (CONST_DATE_LISTED, CONST_MLS_ID,
-                       CONST_MLS_NAME, CONST_PRICE, CONST_BEDROOMS,
-                       CONST_BATHROOMS, CONST_ADDRESS, CONST_ROOMS,
-                       CONST_APPLIANCES, CONST_DESC)
+CONST_DATE_LISTED = (CONST_DATE_INDEX, 'DateListed')
+CONST_MLS_ID = (CONST_ID_INDEX, 'MlsId')
+CONST_MLS_NAME = (CONST_NAME_INDEX, 'MlsName')
+CONST_PRICE = (CONST_PRICE_INDEX, 'Price')
+CONST_BEDROOMS = (CONST_BEDR_INDEX, 'Bedrooms')
+CONST_BATHROOMS = (CONST_BATHR_INDEX, 'Bathrooms')
+CONST_ADDRESS = (CONST_ADDR_INDEX, 'StreetAddress')
+CONST_ROOMS = (CONST_ROOMS_INDEX, 'Rooms')
+CONST_APPLIANCES = (CONST_APPS_INDEX, 'Appliances')
+CONST_DESC = (CONST_DESC_INDEX, 'Description')
+CONST_TABLE_HEADERS = (CONST_DATE_LISTED[1], CONST_MLS_ID[1],
+                       CONST_MLS_NAME[1], CONST_PRICE[1],
+                       CONST_BEDROOMS[1],
+                       CONST_BATHROOMS[1], CONST_ADDRESS[1],
+                       CONST_ROOMS[1],
+                       CONST_APPLIANCES[1], CONST_DESC)
+# Dict for holding listing requirements, key is Element / Tag and
+# value is the condition that needs to be met for the listing to be
+# written to the CSV.
+
+CONST_LISTING_REQUIREMENTS = {CONST_DATE_LISTED: '>2016-',
+                              CONST_DESC: ' and '}
 
 
 def update_criteria_file(criteria_file, data_files):
@@ -37,6 +60,15 @@ def update_criteria_file(criteria_file, data_files):
     timestamps = sorted(timestamps, key=int)
     with open(criteria_file, 'wt') as cf:
         cf.write(str(timestamps[-1]))
+
+
+def requirements_met(member):
+    """This is a helper function to put in any of the
+    requirements that need to be met for a listing element to be
+    written as a row in the csv"""
+    for tag, req in CONST_LISTING_REQUIREMENTS.iteritems():
+        if member.tag == tag[1]:
+            return req in member.text
 
 
 class TransformXML(object):
@@ -58,9 +90,11 @@ class TransformXML(object):
             self,
             criteria='/config/transform.criteria',
             data_dir='/data/',
+            report_year='2016',
     ):
         self.criteria = criteria
         self.data_dir = data_dir
+        self.report_year = report_year
         self.new_files = []
 
     def get_new_input(self):
@@ -104,25 +138,32 @@ class TransformXML(object):
                                                 path='/data/',
                                                 fname=filename)
         csv_filename = '{}{}'.format(file_path.split('.')[0], '.csv')
-        csv_writer = csv.writer(csv_filename)
+        with open(csv_filename, 'w', newline='') as output:
+            writer = csv.writer(output)
+            tags = sorted(CONST_TABLE_HEADERS, key=lambda h: h[0])
+            headers = []
+            for tag in tags:
+                headers.append(tag[1])
+            writer.writerow(headers)
+        #
+        # tree = eT.parse(file_path)
+        # root = tree.getroot()
+        #
+        # table_header = True
+        # for member in root.findall(CONST_LISTING):
+        #     date_listed = member.find(CONST_DATE_LISTED).text
+        #     if self.report_year in date_listed:
+        #         if requirements_met(member):
+        #             listing = []
+        #             if table_header:
+        #                 table_header = False
+        #                 writer.writerow(CONST_TABLE_HEADERS)
+        #
+        #             for header in CONST_TABLE_HEADERS:
+        #                 listing.append(member.find(header).text)
+        #
+        #             writer.writerow(listing)
 
-        tree = eT.parse(file_path)
-        root = tree.getroot()
-
-        table_header = True
-        for member in root.findall(CONST_LISTING):
-            date_listed = member.find(CONST_DATE_LISTED).text
-            desc = member.find(CONST_DESC).text
-            if '2016' in date_listed and 'and' in desc:
-                listing = []
-                if table_header:
-                    table_header = False
-                    csv_writer.writerow(CONST_TABLE_HEADERS)
-
-                for header in CONST_TABLE_HEADERS:
-                    listing.append(member.find(header).text)
-
-                csv_writer.writerow(listing)
 
 if __name__ == 'main':
     t_xml = TransformXML
