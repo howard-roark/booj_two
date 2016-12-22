@@ -34,7 +34,7 @@ def path_is_valid(directory):
     return os.path.exists(path) and os.path.isdir(path)
 
 
-class GetXML(object):
+class GetXML:
     """GetXML class will be used to download and store XMLs based on
     the URLs passed in when the object is created.  By default there
     is only one URL to download an XML from.
@@ -51,6 +51,7 @@ class GetXML(object):
 
     def __init__(self, url='http://syndication.enterprise.websiteidx'
                            '.com/feeds/BoojCodeTest.xml'):
+        print 'I GOT MADE'
         self.url = url
         self.response = requests.Response()
         self.data_dir = '/data/'
@@ -113,7 +114,3 @@ class GetXML(object):
                 f.write(xml)
         else:
             print 'XML downloaded was empty: {fn}'.format(fn=filename)
-
-if __name__ == 'main':
-    g_xml = GetXML()
-    g_xml.download_xml()

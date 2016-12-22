@@ -9,9 +9,6 @@ CONST_LISTING_DETAILS = 'ListingDetails'
 CONST_LOCATION = 'Location'
 CONST_BASIC_DETAILS = 'BasicDetails'
 CONST_RICH_DETAILS = 'RichDetails'
-# Relevant children
-CONST_RELEVANT_CHILDREN = (CONST_LISTING_DETAILS, CONST_RICH_DETAILS,
-                           CONST_LOCATION, CONST_BASIC_DETAILS)
 # Indices for table headers
 CONST_DATE_INDEX = 0
 CONST_ID_INDEX = 1
@@ -41,10 +38,45 @@ CONST_TABLE_HEADERS = (CONST_DATE_LISTED[1], CONST_MLS_ID[1],
                        CONST_BATHROOMS[1], CONST_ADDRESS[1],
                        CONST_ROOMS[1],
                        CONST_APPLIANCES[1], CONST_DESC)
+# Paths to required text fields
+CONST_DATE_LISTED_PATH = (CONST_DATE_INDEX, '{}/{}'.format(
+    CONST_LISTING_DETAILS, CONST_DATE_LISTED))
+
+CONST_MLSID_PATH = ((CONST_ID_INDEX, '{}/{}'.format(
+    CONST_LISTING_DETAILS, CONST_MLS_ID)))
+
+CONST_MLSNAME_PATH = ((CONST_NAME_INDEX, '{}/{}'.format(
+        CONST_LISTING_DETAILS, CONST_MLS_NAME)))
+
+CONST_PRICE_PATH = ((CONST_PRICE_INDEX, '{}/{}'.format(
+    CONST_LISTING_DETAILS, CONST_PRICE)))
+
+CONST_BEDR_PATH = ((CONST_BEDR_INDEX, '{}/{}'.format(
+    CONST_BASIC_DETAILS, CONST_BEDROOMS)))
+
+CONST_BATHR_PATH = ((CONST_BATHR_INDEX, '{}/{}'.format(
+    CONST_BASIC_DETAILS, CONST_BATHROOMS)))
+
+CONST_ADDR_PATH = ((CONST_ADDR_INDEX, '{}/{}'.format(
+    CONST_LOCATION, CONST_ADDRESS)))
+
+CONST_ROOMS_PATH = ((CONST_ROOMS_INDEX, '{}/{}'.format(
+    CONST_RICH_DETAILS, CONST_ROOMS)))
+
+CONST_APPS_PATH = ((CONST_APPS_INDEX, '{}/{}'.format(
+    CONST_RICH_DETAILS, CONST_APPLIANCES)))
+
+CONST_DESC_PATH = ((CONST_DESC_INDEX, '{}/{}'.format(
+    CONST_BASIC_DETAILS, CONST_DESC)))
+
+CONST_PATHS_TO_FIELDS = (CONST_DATE_LISTED_PATH, CONST_MLSID_PATH,
+                         CONST_MLSNAME_PATH, CONST_PRICE_PATH,
+                         CONST_BEDR_PATH, CONST_BATHR_PATH,
+                         CONST_ADDR_PATH, CONST_ROOMS_PATH,
+                         CONST_APPS_PATH, CONST_DESC_PATH)
 # Dict for holding listing requirements, key is Element / Tag and
 # value is the condition that needs to be met for the listing to be
 # written to the CSV.
-
 CONST_LISTING_REQUIREMENTS = {CONST_DATE_LISTED: '>2016-',
                               CONST_DESC: ' and '}
 
@@ -69,6 +101,20 @@ def requirements_met(member):
     for tag, req in CONST_LISTING_REQUIREMENTS.iteritems():
         if member.tag == tag[1]:
             return req in member.text
+
+
+def sort_tree(tree):
+    listings = tree.findall(CONST_DATE_LISTED)
+    element_tuples = []
+    for listing in listings:
+        find_date_listed = '{}/{}'.format(CONST_LISTING,
+                                          CONST_LISTING_DETAILS)
+        key = listing.findtext(find_date_listed)
+        element_tuples.append((key, listing))
+
+    element_tuples.sort()
+    listings[:] = [element[-1] for element in listings]
+    return tree
 
 
 class TransformXML(object):
@@ -131,9 +177,6 @@ class TransformXML(object):
         return self.new_files
 
     def write_csv(self, filename):
-        """Method that will reduce the elements that need to be
-        transformed based on the requirements passed in.
-        """
         file_path = '{cwd}{path}{fname}'.format(cwd=os.getcwd(),
                                                 path='/data/',
                                                 fname=filename)
@@ -145,27 +188,23 @@ class TransformXML(object):
             for tag in tags:
                 headers.append(tag[1])
             writer.writerow(headers)
-        #
-        # tree = eT.parse(file_path)
-        # root = tree.getroot()
-        #
-        # table_header = True
-        # for member in root.findall(CONST_LISTING):
-        #     date_listed = member.find(CONST_DATE_LISTED).text
-        #     if self.report_year in date_listed:
-        #         if requirements_met(member):
-        #             listing = []
-        #             if table_header:
-        #                 table_header = False
-        #                 writer.writerow(CONST_TABLE_HEADERS)
-        #
-        #             for header in CONST_TABLE_HEADERS:
-        #                 listing.append(member.find(header).text)
-        #
-        #             writer.writerow(listing)
 
+            listings = sort_tree(eT.parse(file_path))
 
-if __name__ == 'main':
-    t_xml = TransformXML
-    for i in t_xml.get_new_input():
-        t_xml.write_csv(i)
+            req_fields = []
+            for listing in listings:
+                if requirements_met(listing):
+                    for path in CONST_PATHS_TO_FIELDS.sort():
+                        if path is CONST_APPS_PATH:
+                            # Comma seperated nodes in csv cell
+                            pass
+                        elif path is CONST_DESC_PATH:
+                            # Same as apps
+                            pass
+                        elif path is CONST_DESC_PATH:
+                            # Trim to 200 chars
+                            pass
+                        else:
+                            req_fields.append(listing.findtext(path[1]))
+
+                    writer.writerow(req_fields)
