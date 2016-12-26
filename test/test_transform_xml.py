@@ -4,20 +4,16 @@ import xml.etree.ElementTree as eT
 from src.transform_xml import TransformXML
 from src.transform_xml import update_criteria_file
 from src.transform_xml import requirements_met
-from test_get_xml import clear_old_test_data
+from config_TEST import test_constants as constant
 
 
 def clear_test_criteria():
     """Remove all the test criteria files from the previous test run
     """
-    folder = '{}{}'.format(os.getcwd(), '/config_TEST/')
-    for the_file in os.listdir(folder):
-        file_path = os.path.join(folder, the_file)
-        try:
-            if os.path.isfile(file_path):
-                os.unlink(file_path)
-        except Exception as e:
-            print(e)
+    criteria_file = '{cwd}{dir_file}'.format(
+        cwd=os.getcwd(),
+        dir_file='/test/config_TEST/test_transform.criteria')
+    open(criteria_file, 'w').close()
 
 
 class NonBlankFileTransform(unittest.TestCase):
@@ -29,18 +25,19 @@ class NonBlankFileTransform(unittest.TestCase):
     """
 
     def setUp(self):
-        clear_old_test_data()
+        # clear_old_test_data()
         # Writing a timestamp to a new test criteria file
         test_cf = '{cwd}{file}'.format(cwd=os.getcwd(),
-                                       file='/config_TEST'
+                                       file='/test/config_TEST'
                                             '/test_transform.criteria')
         with open(test_cf, 'wt') as cf:
             # Using a low number as the timestamp to keep testing easy
             cf.write('10')
 
         self.t_xml = TransformXML()
-        self.t_xml.criteria = '/config_TEST/test_transform.criteria'
-        self.t_xml.data_dir = '/data_TEST/'
+        self.t_xml.data_dir = '/test/data_TEST/'
+        self.t_xml.criteria = '/test/config_TEST/test_transform' \
+                              '.criteria'
 
 
 class TestTransformXMLWithCF(NonBlankFileTransform):
@@ -57,6 +54,7 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
     def test_criteria_file_updated(self):
         with open('{}{}'.format(os.getcwd(), self.t_xml.criteria),
                   'rt') as cf:
+            # TODO need a failing test
             criteria_file = '{}{}'.format(os.getcwd(),
                                           self.t_xml.criteria)
             data_files = os.listdir('{}{}'.format(os.getcwd(),
@@ -69,7 +67,38 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
             '''
             self.assertTrue(cf.readline() >= 20)
 
-    def test_reduce_xml(self):
+    def test_requirements_met(self):
+        # Negative test
+        listing_node = eT.Element(constant.CONST_LISTING)
+        basic_details_node = eT.SubElement(
+            listing_node, constant.CONST_BASIC_DETAILS)
+        description_node = eT.SubElement(
+            basic_details_node, constant.CONST_DESC)
+        description_node.text = 'Lions or Tigers or Bears'
+        listing_details_node = eT.SubElement(
+            listing_node, constant.CONST_LISTING_DETAILS)
+        date_listed_node = eT.SubElement(
+            listing_details_node, constant.CONST_DATE_LISTED)
+        date_listed_node.text = '2016-01-01'
+        self.assertFalse(requirements_met(listing_node))
+
+        # Positive test
+        description_node.text = 'Lions and Tigers and Bears'
+        self.assertTrue(requirements_met(listing_node))
+
+    def test_sort_tree(self):
+        """Test that an un-sorted tree can be passed in and tree sorted
+        by date will be returned
+        """
+
+    def test_subnode_vals(self):
+        pass
+
+    def test_get_row(self):
+        """When a valid Listing is passed into get row it should be able
+        to parse the required data and return a list to be written as a
+        row to the CSV
+        """
         pass
 
     def test_write_csv(self):
@@ -86,9 +115,11 @@ class BlankTransformFile(unittest.TestCase):
 
     def setUp(self):
         clear_test_criteria()
+
         self.t_xml = TransformXML()
-        self.t_xml.criteria = '/config_TEST/test_transform.criteria'
-        self.t_xml.data_dir = '/data_TEST/'
+        self.t_xml.data_dir = '/test/data_TEST/'
+        self.t_xml.criteria = '/test/config_TEST/test_transform' \
+                              '.criteria '
 
 
 class TestTransformXMLNoDate(BlankTransformFile):
@@ -105,16 +136,3 @@ class TestTransformXMLNoDate(BlankTransformFile):
         obtained_files = self.t_xml.get_new_input()
         for ef in expected_files:
             self.assertTrue(ef in obtained_files)
-
-    def test_requirements_met(self):
-        good_xml = '<Description>please and thank you</Description>'
-        good_member = eT.fromstring(good_xml)
-        self.assertTrue(requirements_met(good_member))
-
-        non_matching_val_xml = '<Description>or</Description>'
-        non_matching_val_member = eT.fromstring(non_matching_val_xml)
-        self.assertFalse(requirements_met(non_matching_val_member))
-
-        bad_tag_xml = '<NotATag>gonna be ignored</NotATag>'
-        bad_tag_member = eT.fromstring(bad_tag_xml)
-        self.assertFalse(requirements_met(bad_tag_member))

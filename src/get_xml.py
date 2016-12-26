@@ -51,7 +51,6 @@ class GetXML:
 
     def __init__(self, url='http://syndication.enterprise.websiteidx'
                            '.com/feeds/BoojCodeTest.xml'):
-        print 'I GOT MADE'
         self.url = url
         self.response = requests.Response()
         self.data_dir = '/data/'
