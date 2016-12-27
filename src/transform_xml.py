@@ -40,18 +40,18 @@ def requirements_met(listing):
     return reqs_met
 
 
-def sort_tree(tree):
-    listings = tree.findall(constant.CONST_DATE_LISTED)
-    element_tuples = []
-    for listing in listings:
-        find_date_listed = '{}/{}'.format(constant.CONST_LISTING,
-                                          constant.CONST_LISTING_DETAILS)
-        key = listing.findtext(find_date_listed)
-        element_tuples.append((key, listing))
-
-    element_tuples.sort()
-    listings[:] = [element[-1] for element in listings]
-    return tree
+def sort_tree(tree_root, element_tag, sort_by_tag):
+    listings = []
+    for listing in tree_root.findall(element_tag):
+        for tag in listing.iter():
+            if tag.tag == sort_by_tag:
+                listings.append((tag.text, listing))
+    listings.sort()
+    children = []
+    children[:] = [l[-1] for l in listings]
+    tree_root.clear()
+    tree_root.extend(children)
+    return tree_root
 
 
 def get_subnode_vals(path, listing, const):

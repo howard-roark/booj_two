@@ -1,9 +1,11 @@
 import os
 import unittest
 import xml.etree.ElementTree as eT
+from datetime import datetime as dT
 from src.transform_xml import TransformXML
 from src.transform_xml import update_criteria_file
 from src.transform_xml import requirements_met
+from src.transform_xml import sort_tree
 from config_TEST import test_constants as constant
 
 
@@ -88,21 +90,34 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
 
     def test_sort_tree(self):
         """Test that an un-sorted tree can be passed in and tree sorted
-        by date will be returned
+        by date will be returned.
+
+        10_transform_test.xml used, all others are in date order
         """
+        data_file = '{cwd}{dir}{f}'.format(
+            cwd=os.getcwd(), dir=self.t_xml.data_dir,
+            f='10_transform_test.xml')
+        tree = eT.parse(data_file)
+        sorted_tree = sort_tree(tree.getroot(), 'Listing', 'DateListed')
+        previous_date = '1970-01-01 00:00:00'
+        for element in sorted_tree.iter():
+            if element.tag == 'DateListed':
+                pd = dT.strptime(previous_date, "%Y-%m-%d %H:%M:%S")
+                ed = dT.strptime(element.text, "%Y-%m-%d %H:%M:%S")
+                self.assertGreater(ed, pd)
+                previous_date = element.text
 
-    def test_subnode_vals(self):
-        pass
 
-    def test_get_row(self):
-        """When a valid Listing is passed into get row it should be able
-        to parse the required data and return a list to be written as a
-        row to the CSV
-        """
-        pass
+def test_get_row(self):
+    """When a valid Listing is passed into get row it should be able
+    to parse the required data and return a list to be written as a
+    row to the CSV
+    """
+    pass
 
-    def test_write_csv(self):
-        pass
+
+def test_write_csv(self):
+    pass
 
 
 class BlankTransformFile(unittest.TestCase):
