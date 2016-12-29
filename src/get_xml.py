@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-from xml.etree import ElementTree as eT
+import lxml.etree as eT
 import requests
 
 
@@ -38,6 +38,15 @@ class GetXML:
     """GetXML class will be used to download and store XMLs based on
     the URLs passed in when the object is created.  By default there
     is only one URL to download an XML from.
+
+    Before the XML is written to a file on disk it is verified to be
+    syntactically correct XML.  If it is not that it will not be
+    written to disk and an error message will be printed to the
+    console (until more formal logging is setup)
+
+    When storing the files being downloaded there will be a check to
+    make sure that the directories are present and valid, if they are
+    not they will be created.
     """
 
     def __init__(self, url='http://syndication.enterprise.websiteidx'
@@ -84,7 +93,6 @@ class GetXML:
                 self.store_xml(xml, file_name)
                 return self.response.status_code, xml
             else:
-                # TODO Capture stacktrace
                 sys.exit(1)
 
     def store_xml(self, xml, filename):
@@ -97,10 +105,15 @@ class GetXML:
             stored_filename = '{timestamp}_{name}'.format(
                 timestamp=millis,
                 name=filename)
-            file_path = '{cwd}{dir}{name}'.format(cwd=os.getcwd(),
-                                                  dir=self.data_dir,
-                                                  name=stored_filename)
+            file_path = '{path}{dir}{name}'.format(path=os.getcwd(),
+                                                   dir=self.data_dir,
+                                                   name=stored_filename)
             with open(file_path, 'wt') as f:
                 f.write(xml)
         else:
             print 'XML downloaded was empty: {fn}'.format(fn=filename)
+
+
+if __name__ == '__main__':
+    gx = GetXML()
+    gx.download_xml()
