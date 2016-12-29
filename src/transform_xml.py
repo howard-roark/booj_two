@@ -1,6 +1,6 @@
 import os
 import csv
-import xml.etree.ElementTree as eT
+import lxml.etree as eT
 import traceback as tb
 import config.constants as constant
 
@@ -31,7 +31,7 @@ def requirements_met(listing):
     reqs_met = True
     for req_tag, req_text in constant.CONST_LISTING_REQUIREMENTS.iteritems():
         for element in listing.iter():
-            if element.tag == req_tag:
+            if element.tag == req_tag[1]:
                 """If there is an un-expected duplicate tag being
                 queried here than we will not write the row even if
                 one of the tags is correct."""
@@ -54,12 +54,11 @@ def sort_tree(tree_root, element_tag, sort_by_tag):
     return tree_root
 
 
-def get_subnode_vals(path, listing, const):
-    apps = listing.findall(const)
-    app_str = []
-    for app in apps:
-        app_str.append(app.findtext(path[1]))
-    return ','.join(app_str)
+def get_subnode_vals(field):
+    vals_str = []
+    for val in field.iter():
+        vals_str.append(val.text)
+    return ', '.join(val for val in vals_str if val)
 
 
 def get_row(listing):
@@ -68,25 +67,25 @@ def get_row(listing):
     returns a list of all the fields to be written in the row
     """
     req_fields = []
-    for path in constant.CONST_PATHS_TO_FIELDS.sort():
-        if path is constant.CONST_APPS_PATH:
-            apps = get_subnode_vals(path, listing,
-                                    constant.CONST_APPS_PATH)
-            req_fields.append(apps)
-
-        elif path is constant.CONST_ROOMS_PATH:
-            rooms = get_subnode_vals(path, listing,
-                                     constant.CONST_ROOMS)
-            req_fields.append(rooms)
-
-        elif path is constant.CONST_DESC_PATH:
-            # Trim to 200 chars
-            req_fields.append(listing.findtext(path[1])[:201])
-
-        else:
-            req_fields.append(listing.findtext(path[1]))
-
-    return req_fields
+    val_in_subnodes = [s[1] for s in constant.CONST_REQS_SUBNODES]
+    duplicate_parents = [d[0] for d in constant.CONST_REM_DUPS]
+    for element in listing.iter():
+        # Unexpected new lines and whitespace in text fields
+        element.text = element.text.strip() if element.text else None
+        element.tail = element.tail.strip() if element.tail else None
+        for c in constant.CONST_REQ_FIELDS:
+            parent_tag = element.getparent().tag if \
+                element.getparent() else None
+            if parent_tag not in duplicate_parents:
+                if element.tag == c[1] and element.tag not in \
+                        val_in_subnodes:
+                    req_fields.append((c[0], element.text))
+                    break
+                elif element.tag == c[1] and element.tag in \
+                        val_in_subnodes:
+                    req_fields.append((c[0], get_subnode_vals(element)))
+                    break
+    return sorted(req_fields, key=lambda f: f[0])
 
 
 class TransformXML:
@@ -142,8 +141,7 @@ class TransformXML:
         except IndexError:
             print 'IndexError:\n\t{}'.format(tb.print_tb())
         else:
-            update_criteria_file(self.criteria,
-                                 self.data_dir)
+            update_criteria_file(self.criteria, self.data_dir)
 
         return self.new_files
 
@@ -157,15 +155,14 @@ class TransformXML:
             csv_filename = '{}{}'.format(filename.split('.')[0], '.csv')
             with open(csv_filename, 'w', newline='') as output:
                 writer = csv.writer(output)
-                tags = sorted(constant.CONST_TABLE_HEADERS,
+                tags = sorted(constant.CONST_REQ_FIELDS,
                               key=lambda h: h[0])
-                headers = []
-                for tag in tags:
-                    headers.append(tag[1])
+                headers = [h[1] for h in tags]
                 writer.writerow(headers)
 
                 listings = sort_tree(eT.parse(file_path))
 
                 for listing in listings:
                     if requirements_met(listing):
-                        writer.writerow(get_row(listing))
+                        row = [l[1] for l in get_row(listing)]
+                        writer.writerow(row)

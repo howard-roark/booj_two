@@ -1,0 +1,19 @@
+# Overview
+This was setup in two main pieced.  One to download and store the XML and the other to parse through the saved XML files.  My idea on how this would be run, for now, would be as a cron or some other scheduled task that would first download files and then parse through them.
+
+In production I would expect this logic to be hit through some endpoint.  I have written the majority of the code in a way that would allow all the heavy logic to be flexible enough to be run in a few different ways with a small amount of logic changes.
+
+After looking over everything I suppose an argument could be made that this was 'over-engineered', so I have listed some reasons why I decided to write this code as I did.
+
+* To make the code flexible I needed to make sure that there was as little hard-coding as possible in the logic of the code.  I made the constants file as a way to seperate contextual information from the logic of the code.  One of my first changes would be to move this contextual data to config files and have a config parser setup the data for the program to run.  This allows greater flexibility when wanted to parse XML files differently based on config files alone.
+* Writing some of the unit tests took longer than the code, but without them refactoring would be more difficult and take more time in the end.  Also I see the unittests as a way of documenting the expected behaviour of the program.  The unittests would need to be amended so that all functionality had positive and negative test cases as well as some edge cases caught.
+
+## Instructions
+#### Running Unittests
+* Navigate to the root of the project
+* To Run Tests :: python -m unittest discover -v
+
+#### Running Program
+* Navigate to root of the project
+* Make sure that run.sh is executable :: chmode +x run.sh
+* ./run.sh

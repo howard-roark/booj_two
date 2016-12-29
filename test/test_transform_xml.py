@@ -1,11 +1,13 @@
 import os
 import unittest
-import xml.etree.ElementTree as eT
+import lxml.etree as eT
 from datetime import datetime as dT
 from src.transform_xml import TransformXML
 from src.transform_xml import update_criteria_file
 from src.transform_xml import requirements_met
 from src.transform_xml import sort_tree
+from src.transform_xml import get_subnode_vals
+from src.transform_xml import get_row
 from config_TEST import test_constants as constant
 
 
@@ -40,6 +42,10 @@ class NonBlankFileTransform(unittest.TestCase):
         self.t_xml.data_dir = '/test/data_TEST/'
         self.t_xml.criteria = '/test/config_TEST/test_transform' \
                               '.criteria'
+        self.test_listing = eT.parse(
+            '{}{}{}'.format(os.getcwd(),
+                            self.t_xml.data_dir,
+                            '99_test_listing.xml'))
 
 
 class TestTransformXMLWithCF(NonBlankFileTransform):
@@ -72,15 +78,21 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
     def test_requirements_met(self):
         # Negative test
         listing_node = eT.Element(constant.CONST_LISTING)
+
         basic_details_node = eT.SubElement(
             listing_node, constant.CONST_BASIC_DETAILS)
+
         description_node = eT.SubElement(
-            basic_details_node, constant.CONST_DESC)
+            basic_details_node, constant.CONST_DESC[1])
+
         description_node.text = 'Lions or Tigers or Bears'
+
         listing_details_node = eT.SubElement(
             listing_node, constant.CONST_LISTING_DETAILS)
+
         date_listed_node = eT.SubElement(
-            listing_details_node, constant.CONST_DATE_LISTED)
+            listing_details_node, constant.CONST_DATE_LISTED[1])
+
         date_listed_node.text = '2016-01-01'
         self.assertFalse(requirements_met(listing_node))
 
@@ -107,17 +119,44 @@ class TestTransformXMLWithCF(NonBlankFileTransform):
                 self.assertGreater(ed, pd)
                 previous_date = element.text
 
+    def test_get_subnode_vals(self):
+        appliances = eT.Element('Appliances')
+        app = 'Appliance'
+        app_1 = eT.SubElement(appliances, app)
+        app_1.text = 'Stove'
+        app_2 = eT.SubElement(appliances, app)
+        app_2.text = 'Microwave'
+        app_3 = eT.SubElement(appliances, app)
+        app_3.text = 'Keg-O-Rator'
+        expected_str = 'Stove, Microwave, Keg-O-Rator'
+        self.assertEqual(expected_str, get_subnode_vals(appliances))
 
-def test_get_row(self):
-    """When a valid Listing is passed into get row it should be able
-    to parse the required data and return a list to be written as a
-    row to the CSV
-    """
-    pass
+    def test_get_row(self):
+        """When a valid Listing is passed into get row it should be able
+        to parse the required data and return a list to be written as a
+        row to the CSV
+        """
+        expected_desc = 'Enjoy amazing ocean and island views.'
+        expected_apps = 'Stove, Microwave, Refridgerator'
+        expected_rooms = 'Bedroonm, Bathroom, Living Room, Guest ' \
+                         'Room, Study, Office'
+        expected_row = [
+            (constant.CONST_ADDR_INDEX, '0 Castro Peak Mountainway'),
+            (constant.CONST_PRICE_INDEX, '535000.00'),
+            (constant.CONST_ID_INDEX, '14799273'),
+            (constant.CONST_NAME_INDEX, 'CLAW'),
+            (constant.CONST_DATE_INDEX, '2017-10-03 00:00:00'),
+            (constant.CONST_DESC_INDEX, expected_desc),
+            (constant.CONST_BEDR_INDEX, '2'),
+            (constant.CONST_BATHR_INDEX, '1'),
+            (constant.CONST_APPS_INDEX, expected_apps),
+            (constant.CONST_ROOMS_INDEX, expected_rooms)
+        ]
+        expected_row = sorted(expected_row, key=lambda f: f[0])
+        self.assertEqual(get_row(self.test_listing), expected_row)
 
-
-def test_write_csv(self):
-    pass
+    def test_write_csv(self):
+        pass
 
 
 class BlankTransformFile(unittest.TestCase):

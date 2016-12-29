@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-from xml.etree import ElementTree as eT
+import lxml.etree as eT
 import requests
 
 
@@ -93,7 +93,6 @@ class GetXML:
                 self.store_xml(xml, file_name)
                 return self.response.status_code, xml
             else:
-                # TODO Capture stacktrace
                 sys.exit(1)
 
     def store_xml(self, xml, filename):
