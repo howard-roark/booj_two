@@ -50,3 +50,5 @@ CONST_LISTING_REQUIREMENTS = {CONST_DATE_LISTED: '2016-',
 
 CONST_REM_DUPS = (('Office', 'StreetAddress'),
                   ('Neighborhood', 'Description'))
+CONST_TREE_ROOT = 'Listing'
+CONST_SORT_BY = 'DateListed'

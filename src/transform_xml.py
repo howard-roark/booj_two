@@ -1,7 +1,6 @@
 import os
 import csv
 import lxml.etree as eT
-import traceback as tb
 import config.constants as constant
 
 
@@ -35,7 +34,8 @@ def requirements_met(listing):
                 """If there is an un-expected duplicate tag being
                 queried here than we will not write the row even if
                 one of the tags is correct."""
-                if req_text not in element.text:
+                text = element.text if element.text else ''
+                if req_text not in text:
                     reqs_met = False
     return reqs_met
 
@@ -127,8 +127,8 @@ class TransformXML:
 
         try:
             with open(self.criteria, 'rt') as cf:
-                cf_date = cf.readline()[0]
-                for f in self.data_dir:
+                cf_date = cf.readline()
+                for f in data_files:
                     ts = f.split('_')[0]
                     if ts > cf_date:
                         self.new_files.append(f)
@@ -139,9 +139,9 @@ class TransformXML:
             for f in data_files:
                 self.new_files.append(f)
         except IndexError:
-            print 'IndexError:\n\t{}'.format(tb.print_tb())
+            print 'IndexError'
         else:
-            update_criteria_file(self.criteria, self.data_dir)
+            update_criteria_file(self.criteria, self.new_files)
 
         return self.new_files
 
@@ -149,20 +149,33 @@ class TransformXML:
         self.get_new_input()
 
         for filename in self.new_files:
-            file_path = '{cwd}{path}{fname}'.format(cwd=os.getcwd(),
-                                                    path='/data/',
-                                                    fname=filename)
-            csv_filename = '{}{}'.format(filename.split('.')[0], '.csv')
-            with open(csv_filename, 'w', newline='') as output:
+            data_path = '{cwd}{path}'.format(cwd=os.getcwd(),
+                                             path=self.data_dir)
+            file_path = '{d_path}{fname}'.format(d_path=data_path,
+                                                 fname=filename)
+            csv_file = '{d_path}{f_name}{f_type}'.format(
+                d_path=data_path,
+                f_name=filename.split('.')[0],
+                f_type='.csv')
+            with open(csv_file, 'w') as output:
                 writer = csv.writer(output)
                 tags = sorted(constant.CONST_REQ_FIELDS,
                               key=lambda h: h[0])
                 headers = [h[1] for h in tags]
                 writer.writerow(headers)
 
-                listings = sort_tree(eT.parse(file_path))
+                listings = sort_tree(
+                    eT.parse(file_path).getroot(),
+                    constant.CONST_TREE_ROOT,
+                    constant.CONST_SORT_BY
+                )
 
                 for listing in listings:
                     if requirements_met(listing):
                         row = [l[1] for l in get_row(listing)]
                         writer.writerow(row)
+
+
+if __name__ == '__main__':
+    tx = TransformXML
+    tx.write_csv()

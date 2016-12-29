@@ -105,10 +105,15 @@ class GetXML:
             stored_filename = '{timestamp}_{name}'.format(
                 timestamp=millis,
                 name=filename)
-            file_path = '{cwd}{dir}{name}'.format(cwd=os.getcwd(),
-                                                  dir=self.data_dir,
-                                                  name=stored_filename)
+            file_path = '{path}{dir}{name}'.format(path=os.getcwd(),
+                                                   dir=self.data_dir,
+                                                   name=stored_filename)
             with open(file_path, 'wt') as f:
                 f.write(xml)
         else:
             print 'XML downloaded was empty: {fn}'.format(fn=filename)
+
+
+if __name__ == '__main__':
+    gx = GetXML()
+    gx.download_xml()

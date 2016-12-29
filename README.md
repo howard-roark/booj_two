@@ -13,7 +13,5 @@ After looking over everything I suppose an argument could be made that this was 
 * Navigate to the root of the project
 * To Run Tests :: python -m unittest discover -v
 
-#### Running Program
-* Navigate to root of the project
-* Make sure that run.sh is executable :: chmode +x run.sh
-* ./run.sh
+#### Running Full Program
+* From the project root :: python run.py
