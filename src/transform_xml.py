@@ -30,7 +30,11 @@ def requirements_met(listing):
     reqs_met = True
     for req_tag, req_text in constant.CONST_LISTING_REQUIREMENTS.iteritems():
         for element in listing.iter():
-            if element.tag == req_tag[1]:
+            parent_tag = element.getparent().tag if element.getparent() \
+                else None
+            dup_parents = [d[0] for d in constant.CONST_REM_DUPS]
+            if element.tag == req_tag[
+                1] and parent_tag not in dup_parents:
                 """If there is an un-expected duplicate tag being
                 queried here than we will not write the row even if
                 one of the tags is correct."""
@@ -58,7 +62,8 @@ def get_subnode_vals(field):
     vals_str = []
     for val in field.iter():
         vals_str.append(val.text)
-    return ', '.join(val for val in vals_str if val)
+    subnode_vals = ', '.join(val for val in vals_str if val)
+    return subnode_vals if subnode_vals else ', '
 
 
 def get_row(listing):
@@ -76,15 +81,21 @@ def get_row(listing):
         for c in constant.CONST_REQ_FIELDS:
             parent_tag = element.getparent().tag if \
                 element.getparent() else None
+
             if parent_tag not in duplicate_parents:
-                if element.tag == c[1] and element.tag not in \
+
+                if element.tag == c[1] and c[1] == \
+                        constant.CONST_DESC[1]:
+                    req_fields.append((c[0], element.text[:199]))
+
+                elif element.tag == c[1] and element.tag not in \
                         val_in_subnodes:
                     req_fields.append((c[0], element.text))
-                    break
+
                 elif element.tag == c[1] and element.tag in \
                         val_in_subnodes:
                     req_fields.append((c[0], get_subnode_vals(element)))
-                    break
+
     return sorted(req_fields, key=lambda f: f[0])
 
 
