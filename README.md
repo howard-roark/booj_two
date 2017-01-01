@@ -11,10 +11,10 @@ After looking over everything I suppose an argument could be made that this was 
 ## Instructions
 #### Running Unittests
 * Navigate to the root of the project
-* To Run Tests :: python -m unittest discover -v
+* To Run Tests :: ```python -m unittest discover -v```
 
 #### Running Full Program
-* From the project root :: python run.py
+* From the project root :: ```python run.py```
 * Navigate to the data directory to see the XML and related CSV
 
 #### Bugs
