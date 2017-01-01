@@ -1,0 +1,841 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Listings>
+
+  <Listing>
+    <Location>
+      <StreetAddress>0 Castro Peak Mountainway</StreetAddress>
+      <UnitNumber/>
+      <City>Malibu</City>
+      <State>CA</State>
+      <Zip>90265</Zip>
+      <ParcelID/>
+      <Lat>34.087528</Lat>
+      <Long>-118.804301</Long>
+      <County/>
+      <StreetIntersection/>
+      <DisplayAddress>Yes</DisplayAddress>
+    </Location>
+    <ListingDetails>
+      <Status>Active</Status>
+      <Price>535000.00</Price>
+      <ListingUrl>http://www.thepartnerstrust.com/property/42921875/syn/43/</ListingUrl>
+      <MlsId>14799273</MlsId>
+      <MlsName>CLAW</MlsName>
+      <ProviderListingId>42921875</ProviderListingId>
+      <DateListed>2017-10-03 00:00:00</DateListed>
+      <VirtualTourUrl><![CDATA[http://www.thepartnerstrust.com/property/42921875/syn/43/]]></VirtualTourUrl>
+      <ListingEmail>zillow-41@leadrelay.com</ListingEmail>
+      <AlwaysEmailAgent>0</AlwaysEmailAgent>
+      <ShortSale/>
+      <REO/>
+    </ListingDetails>
+    <RentalDetails>
+      <Availability/>
+      <LeaseTerm/>
+      <DepositFees/>
+      <UtilitiesIncluded>
+	<Water/>
+	<Sewage/>
+	<Garbage/>
+	<Electricity/>
+	<Gas/>
+	<Internet/>
+	<Cable/>
+	<SatTV/>
+      </UtilitiesIncluded>
+      <PetsAllowed>
+	<NoPets/>
+	<Cats/>
+	<SmallDogs/>
+	<LargeDogs/>
+      </PetsAllowed>
+    </RentalDetails>
+    <BasicDetails>
+      <PropertyType>VacantLand</PropertyType>
+      <Title>0 Castro Peak Mountainway</Title>
+      <Description><![CDATA[Enjoy amazing ocean and island views from this 10+ acre parcel situated in a convenient and peaceful area of the Santa Monica mountains. Just minutes from beaches or the 101, Castro Peak is located off of Latigo canyon in an area sprinkled with vineyards, ranches and horse properties. A paved road leads you to the site which features considerable useable land and multiple development areas. This is an area of new development. Build your dream.]]></Description>
+      <Bedrooms>0</Bedrooms>
+      <Bathrooms/>
+      <FullBathrooms/>
+      <HalfBathrooms/>
+      <ThreeQuarterBathrooms/>
+      <LivingArea/>
+      <LotSize>10.82</LotSize>
+      <year-built/>
+    </BasicDetails>
+    <Pictures>
+              
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/0/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/1/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/2/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/3/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/4/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/5/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/6/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/7/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/8/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/9/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/10/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/11/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/12/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/13/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/14/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/15/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/16/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/17/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/18/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/19/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/20/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/21/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/22/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/23/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42921875/24/v32/</PictureUrl>  	
+<Caption/>	
+</Picture>
+    </Pictures>
+    <Agent>
+      <FirstName>Madison</FirstName>
+      <LastName>Hildebrand</LastName>
+      <EmailAddress>madison@themalibulife.com</EmailAddress>
+      <PictureUrl>http://media.thepartnerstrust.com/pics/realtor/659891/107176/</PictureUrl>
+      <OfficeLineNumber>310-818-5788</OfficeLineNumber>
+      <MobilePhoneLineNumber>310-818-5788</MobilePhoneLineNumber>
+      <FaxLineNumber/>
+    </Agent>
+    <Office>
+      <BrokerageName>Partners Trust</BrokerageName>
+      <BrokerPhone>310-858-6800</BrokerPhone>
+      <BrokerEmail>inquire@thepartnerstrust.com</BrokerEmail>
+      <BrokerWebsite>http://www.thepartnerstrust.com/</BrokerWebsite>
+      <StreetAddress>23410 Civic Center Way, C1</StreetAddress>
+      <UnitNumber/>
+      <City>Malibu</City>
+      <State>CA</State>
+      <Zip>90265</Zip>
+      <OfficeName>Malibu</OfficeName>
+      <FranchiseName>Partners Trust</FranchiseName>
+    </Office>
+    <OpenHouses>
+      <OpenHouse/>
+    </OpenHouses>
+    <Fees>
+      <Fee>
+	<FeeType/>
+	<FeeAmount/>
+	<FeePeriod>Monthly</FeePeriod>
+      </Fee>
+    </Fees>
+    <Neighborhood>
+      <Name/>
+      <Description/>
+    </Neighborhood>
+    <RichDetails>
+      <AdditionalFeatures/>
+      <Appliances/>
+      <ArchitectureStyle/>
+      <Attic/>
+      <BarbecueArea/>
+      <Basement/>
+      <BuildingUnitCount/>
+      <CableReady/>
+      <CeilingFan/>
+      <CondoFloorNum/>
+      <CoolingSystems>
+	<CoolingSystem/>
+      </CoolingSystems>
+      <Deck/>
+      <DisabledAccess/>
+      <Dock/>
+      <Doorman/>
+      <DoublePaneWindows/>
+      <Elevator>No</Elevator>
+      <ExteriorTypes>
+	<ExteriorType/>
+      </ExteriorTypes>
+      <Fireplace/>
+      <FloorCoverings>
+	<FloorCovering/>
+      </FloorCoverings>
+      <Garden/>
+      <Gated/>
+      <Greenhouse/>
+      <HeatingFuels>
+	<HeatingFuel/>
+      </HeatingFuels>
+      <HottubSpa/>
+      <Intercom/>
+      <JettedBathTub>No</JettedBathTub>
+      <Lawn/>
+      <LegalDescription/>
+      <MotherInLaw/>
+      <NumFloors/>
+      <NumParkingSpaces/>
+      <ParkingTypes>
+	<ParkingType/>
+      </ParkingTypes>
+      <Patio/>
+      <Pond/>
+      <Pool/>
+      <Porch/>
+      <RoofTypes>
+	<RoofType/>
+      </RoofTypes>
+      <RoomCount>0</RoomCount>
+      <RvParking/>
+      <Sauna/>
+      <SecuritySystem>No</SecuritySystem>
+      <Skylight/>
+      <SportsCourt/>
+      <SprinkerSystem/>
+      <VaultedCeiling/>
+      <ViewTypes>
+	<ViewType/>
+      </ViewTypes>
+      <Waterfront/>
+      <Wetbar/>
+      <WhatOwnerLoves/>
+      <Wired/>
+      <YearUpdated/>
+      <FitnessCenter/>
+      <BasketballCourt/>
+      <TennisCourt/>
+      <NearTransportation/>
+      <ControlledAccess/>
+      <Over55ActiveCommunity/>
+      <AssistedLivingCommunity/>
+      <Storage/>
+      <FencedYard/>
+      <PropertyName/>
+      <Furnished/>
+      <HighspeedInternet/>
+      <OnsiteLaundry/>
+      <CableSatTV/>
+      <Taxes>
+	<Tax>
+	  <TaxYear/>
+	  <TaxAmount/>
+	</Tax>
+      </Taxes>
+      <NewConstruction/>
+    </RichDetails>
+  </Listing>
+
+  <Listing>
+    <Location>
+      <StreetAddress>0 SADDLE PEAK RD</StreetAddress>
+      <UnitNumber/>
+      <City>Malibu</City>
+      <State>CA</State>
+      <Zip>90290</Zip>
+      <ParcelID/>
+      <Lat>34.077269</Lat>
+      <Long>-118.614425</Long>
+      <County/>
+      <StreetIntersection/>
+      <DisplayAddress>Yes</DisplayAddress>
+    </Location>
+    <ListingDetails>
+      <Status>Active</Status>
+      <Price>200000.00</Price>
+      <ListingUrl>http://www.thepartnerstrust.com/property/42922064/syn/43/</ListingUrl>
+      <MlsId>14802845</MlsId>
+      <MlsName>CLAW</MlsName>
+      <ProviderListingId>42922064</ProviderListingId>
+      <DateListed>2012-10-17 00:00:00</DateListed>
+      <VirtualTourUrl><![CDATA[http://www.thepartnerstrust.com/property/42922064/syn/43/]]></VirtualTourUrl>
+      <ListingEmail>zillow-41@leadrelay.com</ListingEmail>
+      <AlwaysEmailAgent>0</AlwaysEmailAgent>
+      <ShortSale/>
+      <REO/>
+    </ListingDetails>
+    <RentalDetails>
+      <Availability/>
+      <LeaseTerm/>
+      <DepositFees/>
+      <UtilitiesIncluded>
+	<Water/>
+	<Sewage/>
+	<Garbage/>
+	<Electricity/>
+	<Gas/>
+	<Internet/>
+	<Cable/>
+	<SatTV/>
+      </UtilitiesIncluded>
+      <PetsAllowed>
+	<NoPets/>
+	<Cats/>
+	<SmallDogs/>
+	<LargeDogs/>
+      </PetsAllowed>
+    </RentalDetails>
+    <BasicDetails>
+      <PropertyType>VacantLand</PropertyType>
+      <Title>0 SADDLE PEAK RD</Title>
+      <Description><![CDATA[Spectacular views from this 4+ acre property perched on the ridge between PCH and the Valley. Two APNs - 4438-034-037 and 031 being sold together. Plus, there is a lot next door for sale too! A, paved private road leads you almost to the site. This lot has development challenges - not for the faint of heart. Property has been owned by the same family for over 40 years. Reports and information is limited.]]></Description>
+      <Bedrooms>0</Bedrooms>
+      <Bathrooms/>
+      <FullBathrooms/>
+      <HalfBathrooms/>
+      <ThreeQuarterBathrooms/>
+      <LivingArea/>
+      <LotSize>4.2</LotSize>
+      <year-built/>
+    </BasicDetails>
+    <Pictures>
+              
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/0/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/1/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/2/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/3/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/4/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/5/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/6/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/7/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/8/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/9/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/10/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922064/11/v7/</PictureUrl>  	
+<Caption/>	
+</Picture>
+    </Pictures>
+    <Agent>
+      <FirstName>Madison</FirstName>
+      <LastName>Hildebrand</LastName>
+      <EmailAddress>madison@themalibulife.com</EmailAddress>
+      <PictureUrl>http://media.thepartnerstrust.com/pics/realtor/659891/107176/</PictureUrl>
+      <OfficeLineNumber>310-818-5788</OfficeLineNumber>
+      <MobilePhoneLineNumber>310-818-5788</MobilePhoneLineNumber>
+      <FaxLineNumber/>
+    </Agent>
+    <Office>
+      <BrokerageName>Partners Trust</BrokerageName>
+      <BrokerPhone>310-858-6800</BrokerPhone>
+      <BrokerEmail>inquire@thepartnerstrust.com</BrokerEmail>
+      <BrokerWebsite>http://www.thepartnerstrust.com/</BrokerWebsite>
+      <StreetAddress>23410 Civic Center Way, C1</StreetAddress>
+      <UnitNumber/>
+      <City>Malibu</City>
+      <State>CA</State>
+      <Zip>90265</Zip>
+      <OfficeName>Malibu</OfficeName>
+      <FranchiseName>Partners Trust</FranchiseName>
+    </Office>
+    <OpenHouses>
+      <OpenHouse/>
+    </OpenHouses>
+    <Fees>
+      <Fee>
+	<FeeType/>
+	<FeeAmount/>
+	<FeePeriod>Monthly</FeePeriod>
+      </Fee>
+    </Fees>
+    <Neighborhood>
+      <Name/>
+      <Description/>
+    </Neighborhood>
+    <RichDetails>
+      <AdditionalFeatures/>
+      <Appliances/>
+      <ArchitectureStyle/>
+      <Attic/>
+      <BarbecueArea/>
+      <Basement/>
+      <BuildingUnitCount/>
+      <CableReady/>
+      <CeilingFan/>
+      <CondoFloorNum/>
+      <CoolingSystems>
+	<CoolingSystem/>
+      </CoolingSystems>
+      <Deck/>
+      <DisabledAccess/>
+      <Dock/>
+      <Doorman/>
+      <DoublePaneWindows/>
+      <Elevator>No</Elevator>
+      <ExteriorTypes>
+	<ExteriorType/>
+      </ExteriorTypes>
+      <Fireplace/>
+      <FloorCoverings>
+	<FloorCovering/>
+      </FloorCoverings>
+      <Garden/>
+      <Gated/>
+      <Greenhouse/>
+      <HeatingFuels>
+	<HeatingFuel/>
+      </HeatingFuels>
+      <HottubSpa/>
+      <Intercom/>
+      <JettedBathTub>No</JettedBathTub>
+      <Lawn/>
+      <LegalDescription/>
+      <MotherInLaw/>
+      <NumFloors/>
+      <NumParkingSpaces/>
+      <ParkingTypes>
+	<ParkingType/>
+      </ParkingTypes>
+      <Patio/>
+      <Pond/>
+      <Pool/>
+      <Porch/>
+      <RoofTypes>
+	<RoofType/>
+      </RoofTypes>
+      <RoomCount>0</RoomCount>
+      <RvParking/>
+      <Sauna/>
+      <SecuritySystem>No</SecuritySystem>
+      <Skylight/>
+      <SportsCourt/>
+      <SprinkerSystem/>
+      <VaultedCeiling/>
+      <ViewTypes>
+	<ViewType/>
+      </ViewTypes>
+      <Waterfront/>
+      <Wetbar/>
+      <WhatOwnerLoves/>
+      <Wired/>
+      <YearUpdated/>
+      <FitnessCenter/>
+      <BasketballCourt/>
+      <TennisCourt/>
+      <NearTransportation/>
+      <ControlledAccess/>
+      <Over55ActiveCommunity/>
+      <AssistedLivingCommunity/>
+      <Storage/>
+      <FencedYard/>
+      <PropertyName/>
+      <Furnished/>
+      <HighspeedInternet/>
+      <OnsiteLaundry/>
+      <CableSatTV/>
+      <Taxes>
+	<Tax>
+	  <TaxYear/>
+	  <TaxAmount/>
+	</Tax>
+      </Taxes>
+      <NewConstruction/>
+    </RichDetails>
+  </Listing>
+
+  <Listing>
+    <Location>
+      <StreetAddress>21310 PACIFIC COAST HWY</StreetAddress>
+      <UnitNumber/>
+      <City>Malibu</City>
+      <State>CA</State>
+      <Zip>90265</Zip>
+      <ParcelID/>
+      <Lat>34.03694</Lat>
+      <Long>-118.63859</Long>
+      <County/>
+      <StreetIntersection/>
+      <DisplayAddress>Yes</DisplayAddress>
+    </Location>
+    <ListingDetails>
+      <Status>For Rent</Status>
+      <Price>23500.00</Price>
+      <ListingUrl>http://www.thepartnerstrust.com/property/42922931/syn/43/</ListingUrl>
+      <MlsId>15883387</MlsId>
+      <MlsName>CLAW</MlsName>
+      <ProviderListingId>42922931</ProviderListingId>
+      <DateListed>2014-03-03 00:00:00</DateListed>
+      <VirtualTourUrl><![CDATA[http://www.thepartnerstrust.com/property/42922931/syn/43/]]></VirtualTourUrl>
+      <ListingEmail>zillow-41@leadrelay.com</ListingEmail>
+      <AlwaysEmailAgent>0</AlwaysEmailAgent>
+      <ShortSale/>
+      <REO/>
+    </ListingDetails>
+    <RentalDetails>
+      <Availability/>
+      <LeaseTerm/>
+      <DepositFees/>
+      <UtilitiesIncluded>
+	<Water/>
+	<Sewage/>
+	<Garbage/>
+	<Electricity/>
+	<Gas/>
+	<Internet/>
+	<Cable/>
+	<SatTV/>
+      </UtilitiesIncluded>
+      <PetsAllowed>
+	<NoPets/>
+	<Cats/>
+	<SmallDogs/>
+	<LargeDogs/>
+      </PetsAllowed>
+    </RentalDetails>
+    <BasicDetails>
+      <PropertyType>Apartment</PropertyType>
+      <Title>21310 PACIFIC COAST HWY</Title>
+      <Description><![CDATA[A STUNNING Architectural beautifully designed with pillowed stone floors, hand rubbed Venetian plaster walls, 11 ft ceilings filled with natural light, theatrical mood lighting, 3 fireplaces, two huge ocean front decks - and the always sandy beach just about 13 minutes from Santa Monica. The Great Room has extensive seating, exquisite art, 2 huge antique barn doors as backdrop for the 65" LED Smart TV (with 3D, wifi, surround sound) and is open to the European kitchen with service for 24. There are 2 Master Suites: one with private deck, steam shower, spa tub (all ocean front) & huge WIC , the 2nd Master has private entry, kitchenette, large sitting room and spa bath. The 3rd guest suite is as elegant and peaceful. Beautifully furnished with flat screens throughout, AC, 3 car garage and a guaranteed feeling of Serenity. June $30,000; Summer (July, Aug, Sept) at $45,000/mo.]]></Description>
+      <Bedrooms>3</Bedrooms>
+      <Bathrooms/>
+      <FullBathrooms>4</FullBathrooms>
+      <HalfBathrooms/>
+      <ThreeQuarterBathrooms/>
+      <LivingArea>3500</LivingArea>
+      <LotSize>0.15</LotSize>
+      <year-built/>
+    </BasicDetails>
+    <Pictures>
+              
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/0/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/1/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/2/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/3/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/4/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/5/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/6/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/7/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/8/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/9/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/10/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/11/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/12/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+        
+	<Picture>
+<PictureUrl>http://media.thepartnerstrust.com/pics/property/42922931/13/v127/</PictureUrl>  	
+<Caption/>	
+</Picture>
+    </Pictures>
+    <Agent>
+      <FirstName>Carol</FirstName>
+      <LastName>Bird</LastName>
+      <EmailAddress>carol@carolbird.com</EmailAddress>
+      <PictureUrl>http://media.thepartnerstrust.com/pics/realtor/659766/98870/</PictureUrl>
+      <OfficeLineNumber>310-818-5780</OfficeLineNumber>
+      <MobilePhoneLineNumber>310-818-5780</MobilePhoneLineNumber>
+      <FaxLineNumber/>
+    </Agent>
+    <Office>
+      <BrokerageName>Partners Trust</BrokerageName>
+      <BrokerPhone>310-858-6800</BrokerPhone>
+      <BrokerEmail>inquire@thepartnerstrust.com</BrokerEmail>
+      <BrokerWebsite>http://www.thepartnerstrust.com/</BrokerWebsite>
+      <StreetAddress>23410 Civic Center Way, C1</StreetAddress>
+      <UnitNumber/>
+      <City>Malibu</City>
+      <State>CA</State>
+      <Zip>90265</Zip>
+      <OfficeName>Malibu</OfficeName>
+      <FranchiseName>Partners Trust</FranchiseName>
+    </Office>
+    <OpenHouses>
+      <OpenHouse/>
+    </OpenHouses>
+    <Fees>
+      <Fee>
+	<FeeType/>
+	<FeeAmount/>
+	<FeePeriod>Monthly</FeePeriod>
+      </Fee>
+    </Fees>
+    <Neighborhood>
+      <Name/>
+      <Description/>
+    </Neighborhood>
+    <RichDetails>
+      <AdditionalFeatures/>
+      <Appliances>
+        <Appliance>Built-Ins</Appliance>
+        <Appliance>Range Hood</Appliance>
+        <Appliance>Microwave</Appliance>
+        <Appliance>RangeOven</Appliance>
+      </Appliances>
+      <ArchitectureStyle>Architectural</ArchitectureStyle>
+      <Attic/>
+      <BarbecueArea/>
+      <Basement/>
+      <BuildingUnitCount/>
+      <CableReady/>
+      <CeilingFan/>
+      <CondoFloorNum/>
+      <CoolingSystems>
+	<CoolingSystem/>
+      </CoolingSystems>
+      <Deck/>
+      <DisabledAccess/>
+      <Dock/>
+      <Doorman/>
+      <DoublePaneWindows/>
+      <Elevator>No</Elevator>
+      <ExteriorTypes>
+	<ExteriorType/>
+      </ExteriorTypes>
+      <Fireplace/>
+      <FloorCoverings>
+	<FloorCovering/>
+      </FloorCoverings>
+      <Garden/>
+      <Gated/>
+      <Greenhouse/>
+      <HeatingFuels>
+	        <HeatingFuel>Central Furnace</HeatingFuel>
+      </HeatingFuels>
+      <HottubSpa/>
+      <Intercom/>
+      <JettedBathTub>No</JettedBathTub>
+      <Lawn/>
+      <LegalDescription/>
+      <MotherInLaw/>
+      <NumFloors/>
+      <NumParkingSpaces/>
+      <ParkingTypes>
+	<ParkingType/>
+      </ParkingTypes>
+      <Patio/>
+      <Pond/>
+      <Pool/>
+      <Porch/>
+      <RoofTypes>
+	        <RoofType>Tile</RoofType>
+      </RoofTypes>
+      <RoomCount>2</RoomCount>
+      <Rooms>
+	        <Room>bedrooms</Room>
+        <Room>bathrooms</Room>
+      </Rooms>
+      <RvParking/>
+      <Sauna/>
+      <SecuritySystem>No</SecuritySystem>
+      <Skylight/>
+      <SportsCourt/>
+      <SprinkerSystem/>
+      <VaultedCeiling/>
+      <ViewTypes>
+	<ViewType/>
+      </ViewTypes>
+      <Waterfront/>
+      <Wetbar/>
+      <WhatOwnerLoves/>
+      <Wired/>
+      <YearUpdated/>
+      <FitnessCenter/>
+      <BasketballCourt/>
+      <TennisCourt/>
+      <NearTransportation/>
+      <ControlledAccess/>
+      <Over55ActiveCommunity/>
+      <AssistedLivingCommunity/>
+      <Storage/>
+      <FencedYard/>
+      <PropertyName/>
+      <Furnished/>
+      <HighspeedInternet/>
+      <OnsiteLaundry/>
+      <CableSatTV/>
+      <Taxes>
+	<Tax>
+	  <TaxYear/>
+	  <TaxAmount/>
+	</Tax>
+      </Taxes>
+      <NewConstruction/>
+    </RichDetails>
+  </Listing>
+
+</Listings>
