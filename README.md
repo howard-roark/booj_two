@@ -1,7 +1,7 @@
 # Overview
-This was setup in two main pieced.  One to download and store the XML and the other to parse through the saved XML files.  My idea on how this would be run, for now, would be as a cron or some other scheduled task that would first download files and then parse through them.
+This was setup in two main pieces.  One to download and store the XML and the other to parse through the saved XML files.  My idea on how this would be run, for now, would be as a cron or some other scheduled task that would first download files and then parse through them.
 
-In production I would expect this logic to be hit through some endpoint.  I have written the majority of the code in a way that would allow all the heavy logic to be flexible enough to be run in a few different ways with a small amount of logic changes.
+In production I would expect this logic to be hit through some endpoint.  I have written the majority of the code in a way that would allow all the heavy logic to be flexible enough to be run in a few different ways with a small amount of code changes.
 
 After looking over everything I suppose an argument could be made that this was 'over-engineered', so I have listed some reasons why I decided to write this code as I did.
 
