@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Listing>
+  <Location>
+    <StreetAddress>0 Castro Peak Mountainway</StreetAddress>
+    <State>CA</State>
+  </Location>
+  <ListingDetails>
+    <Price>535000.00</Price>
+    <MlsId>14799273</MlsId>
+    <MlsName>CLAW</MlsName>
+    <DateListed>2017-10-03 00:00:00</DateListed>
+  </ListingDetails>
+  <BasicDetails>
+    <Description><![CDATA[Enjoy amazing ocean and island views.]]></Description>
+    <Bedrooms>2</Bedrooms>
+    <Bathrooms>1</Bathrooms>
+  </BasicDetails>
+  <Office>
+    <StreetAddress>23410 Civic Center Way, C1</StreetAddress>
+  </Office>
+  <Neighborhood>
+    <Name/>
+    <Description>Duplicate description</Description>
+  </Neighborhood>
+  <RichDetails>
+    <Appliances>
+      <Appliance>Stove</Appliance>
+      <Appliance>Microwave</Appliance>
+      <Appliance>Refridgerator</Appliance>
+    </Appliances>
+    <Rooms>
+      <Room>Bedroonm</Room>
+      <Room>Bathroom</Room>
+      <Room>Living Room</Room>
+      <Room>Guest Room</Room>
+      <Room>Study</Room>
+      <Room>Office</Room>
+    </Rooms>
+  </RichDetails>
+</Listing>
