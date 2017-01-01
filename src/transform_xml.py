@@ -62,7 +62,7 @@ def get_subnode_vals(field):
     for val in field.iter():
         vals_str.append(val.text)
     subnode_vals = ', '.join(val for val in vals_str if val)
-    return subnode_vals if subnode_vals else ', '
+    return subnode_vals.strip() if subnode_vals else ''
 
 
 def get_row(listing):
