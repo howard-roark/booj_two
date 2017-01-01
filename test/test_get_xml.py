@@ -29,12 +29,12 @@ class TestGetXML(unittest.TestCase):
         self.valid_xml = "<root><child>Child A</child><child>Child " \
                          "B</child></root> "
         self.malformed_xml = "<root<child>Child A</child>/root>"
-        self.test_dir = '/data_TEST'
+        self.test_dir = '/test/data_TEST/'
         self.gX = GetXML()
-        self.gX.data_dir = '/data_TEST/'
+        self.gX.data_dir = '/test/data_TEST/'
 
         self.badGX = GetXML(url='mwmcguire.com')
-        self.badGX.data_dir = '/data_TEST/'
+        self.badGX.data_dir = '/test/data_TEST/'
 
     def test_well_formed_xml(self):
         """Ensure that the XML is formatted validly

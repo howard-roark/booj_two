@@ -3,6 +3,7 @@ import sys
 import time
 import lxml.etree as eT
 import requests
+import config.constants as constant
 
 
 def well_formed_xml(response_text):
@@ -49,11 +50,10 @@ class GetXML:
     not they will be created.
     """
 
-    def __init__(self, url='http://syndication.enterprise.websiteidx'
-                           '.com/feeds/BoojCodeTest.xml'):
+    def __init__(self, url=constant.CONST_URL):
         self.url = url
         self.response = requests.Response()
-        self.data_dir = '/data/'
+        self.data_dir = constant.CONST_DATA_DIR
 
     def download_xml(self, retries=2):
         """Function to download the XML file from a feed.

@@ -115,9 +115,9 @@ class TransformXML:
 
     def __init__(
             self,
-            criteria='/config/transform.criteria',
-            data_dir='/data/',
-            report_year='2016',
+            criteria=constant.CONST_CRIT_FILE,
+            data_dir=constant.CONST_DATA_DIR,
+            report_year=constant.CONST_REPORT_YEAR,
     ):
         self.criteria = '{cwd}{file}'.format(cwd=os.getcwd(),
                                              file=criteria)
