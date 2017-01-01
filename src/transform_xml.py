@@ -33,8 +33,7 @@ def requirements_met(listing):
             parent_tag = element.getparent().tag if element.getparent() \
                 else None
             dup_parents = [d[0] for d in constant.CONST_REM_DUPS]
-            if element.tag == req_tag[
-                1] and parent_tag not in dup_parents:
+            if element.tag == req_tag[1] and parent_tag not in dup_parents:
                 """If there is an un-expected duplicate tag being
                 queried here than we will not write the row even if
                 one of the tags is correct."""
