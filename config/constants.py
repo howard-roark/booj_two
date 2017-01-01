@@ -1,3 +1,12 @@
+# TransformXML constructor
+CONST_CRIT_FILE = '/config/transform.criteria'
+CONST_DATA_DIR = '/data/'
+CONST_REPORT_YEAR = '2016'
+
+# GetXML constructor
+CONST_URL = 'http://syndication.enterprise.websiteidx.com/feeds' \
+            '/BoojCodeTest.xml'
+
 # Required parent tags
 CONST_LISTING = 'Listing'
 CONST_LISTING_DETAILS = 'ListingDetails'
