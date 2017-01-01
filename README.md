@@ -18,4 +18,5 @@ After looking over everything I suppose an argument could be made that this was 
 * Navigate to the data directory to see the XML and related CSV
 
 #### Bugs
-* RESOLVED: #3  See [1d52568](https://github.com/howard-roark/booj_two/pull/7/commits/1d525687de33f1f12de97eaf4bad053eb9ea0b68)
+* RESOLVED: Issue [#3](https://github.com/howard-roark/booj_two/issues/3)
+  * See [1d52568](https://github.com/howard-roark/booj_two/pull/7/commits/1d525687de33f1f12de97eaf4bad053eb9ea0b68)
