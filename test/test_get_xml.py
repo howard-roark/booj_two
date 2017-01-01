@@ -8,12 +8,14 @@ from src.get_xml import path_is_valid
 def clear_old_test_data():
     """Remove all the test data from the previous test run
     """
-    folder = '{}{}'.format(os.getcwd(), '/data_TEST/')
+    folder = '{}{}'.format(os.getcwd(), '/test/data_TEST/')
     for the_file in os.listdir(folder):
         file_path = os.path.join(folder, the_file)
         leave_files = ('1_transform_test.xml',
                        '10_transform_test.xml',
-                       '20_transform_test.xml',)
+                       '20_transform_test.xml',
+                       '99_test_listing.xml',
+                       '1_bug.xml')
         try:
             if os.path.isfile(file_path) and the_file not in \
                     leave_files:
