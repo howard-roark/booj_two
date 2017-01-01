@@ -18,4 +18,4 @@ After looking over everything I suppose an argument could be made that this was 
 * Navigate to the data directory to see the XML and related CSV
 
 #### Bugs
-1. As of now I am seeing the Description being written for the Appliances column.  When stepping through I can see that the fields are being set as I expect them to be, but when I read it in LibreOffice it is not correct for a few of the listings.
+* RESOLVED: As of now I am seeing the Description being written for the Appliances column.  When stepping through I can see that the fields are being set as I expect them to be, but when I read it in LibreOffice it is not correct for a few of the listings.  See https://github.com/howard-roark/booj_two/pull/7/commits/1d525687de33f1f12de97eaf4bad053eb9ea0b68
